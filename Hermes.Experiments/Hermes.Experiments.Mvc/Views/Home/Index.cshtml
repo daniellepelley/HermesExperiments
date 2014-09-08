@@ -1,0 +1,50 @@
+﻿<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+<script src="~/Scripts/app.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.9.0.js"></script>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+    <body ng-app="myApp">
+        
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Brand</a>
+                </div>
+            </div>
+        </nav>
+        
+        @(Html.Angular()
+            .Cntl("myController")
+            .Content("{{title}} This is content"))
+
+        <div  hover-class>
+            fsfdasfd
+        </div>
+
+        <div ng-controller="myController" class="well" margin="10">
+                {{title}}
+            </div>
+
+            <button type="submit" margin="5" class="btn btn-info">Submit</button>
+</body>
+</html>
