@@ -33,18 +33,29 @@
             </div>
         </nav>
         
-        @(Html.Angular()
+        @(Html.Ng()
             .Cntl("myController")
-            .Content("{{title}} This is content"))
+            .Content("{{title}} This is content")
+            .WithHover()
+            .WithSubControl(b => b
+                .Content("This is inner 1")
+                .OnClick("clicked()"))
+            .WithSubControl(b => b.Content("This is inner 2")))
 
-        <div  hover-class>
+        <div margin="10" hoverdirective>
             fsfdasfd
         </div>
-
-        <div ng-controller="myController" class="well" margin="10">
+        
+        @using (Html.AngularController("myController", "nav"))
+        {
+            @(Html.Ng()
+                .Content("{{title}} This is more content...")
+                .OnClick("clicked()"))
+            
+            <div hoverdirective class="well" margin="10">
                 {{title}}
             </div>
-
-            <button type="submit" margin="5" class="btn btn-info">Submit</button>
-</body>
+        }
+        <button type="submit" margin="5" class="btn btn-info">Submit</button>
+    </body>
 </html>

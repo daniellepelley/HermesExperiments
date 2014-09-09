@@ -3,26 +3,21 @@
 app.controller = app.controller('myController', function($scope) {
     $scope.title = "Hello";
     $scope.hoverClass = 'btn';
+    $scope.clicked = function() {
+        $scope.title += "*";
+    };
 });
 
 
-app.directive('hoverClass', function() {
+app.directive('hoverdirective', function () {
     return {
         restrict: 'A',
-        scope: {
-            hoverClass: '@'
-        },
-        link: function(scope, element) {
-            element.on('mouseenter', function() {
+        link: function (scope, element) {
+            element.bind('mouseenter', function () {
                 element.css('background-color', 'yellow');
-
-                //$(element).toggle("fade");
-
-                //element.addClass(scope.hoverClass);
             });
-            element.on('mouseleave', function() {
+            element.bind('mouseleave', function () {
                 element.css('background-color', 'lightgoldenrodyellow');
-                //element.removeClass(scope.hoverClass);
             });
         }
     };
