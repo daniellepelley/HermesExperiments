@@ -33,6 +33,7 @@
             </div>
         </nav>
         
+      
         @(Html.Ng()
             .Cntl("myController")
             .Content("{{title}} This is content")
@@ -51,7 +52,30 @@
             @(Html.Ng()
                 .Content("{{title}} This is more content...")
                 .OnClick("clicked()"))
-            
+
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr class="h4">
+                <td ng-repeat="property in headers" ng-click="sort(property)">
+                    {{property.title}}
+                    <span ng-show="property.sortDirection === 1" class="glyphicon glyphicon-chevron-down"></span>
+                    <span ng-show="property.sortDirection === -1" class="glyphicon glyphicon-chevron-up"></span>
+                </td>
+            </tr>
+        </thead>
+        <tr ng-repeat="row in data">
+            <td ng-repeat="value in row">{{value}}</td>
+        </tr>
+
+    </table>
+
+
+
+            <div ng-repeat="d in data">
+                {{d.Title}}
+                {{d.Number}}
+            </div>
+
             <div hoverdirective class="well" margin="10">
                 {{title}}
             </div>
