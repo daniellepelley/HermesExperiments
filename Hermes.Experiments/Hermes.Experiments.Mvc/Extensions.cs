@@ -16,7 +16,7 @@ namespace Hermes.Experiments.Mvc
 
         public static AngularBuilder Ng(this HtmlHelper helper)
         {
-            return new AngularBuilder();
+            return new AngularBuilder(helper);
         }
 
         public static AngularScope AngularController(this HtmlHelper helper, string controller, string tagName = "div")
@@ -33,6 +33,12 @@ namespace Hermes.Experiments.Mvc
         private string _content;
         private string _onClick;
         private bool _withHover;
+        private HtmlHelper _helper;
+
+        public AngularBuilder(HtmlHelper helper)
+        {
+            _helper = helper;
+        }
 
         public AngularBuilder Cntl(string controllerName)
         {
@@ -60,7 +66,7 @@ namespace Hermes.Experiments.Mvc
 
         public AngularBuilder WithSubControl(Func<AngularBuilder, AngularBuilder> builder)
         {
-            _content += builder(new AngularBuilder()).ToHtmlString();
+            _content += builder(new AngularBuilder(_helper)).ToHtmlString();
             return this;
         }
 
@@ -75,6 +81,8 @@ namespace Hermes.Experiments.Mvc
 
             if (!string.IsNullOrEmpty(_controller))
             {
+                _helper.ViewContext.TempData.Add("controller", _controller);
+
                 tagBuilder.Attributes.Add("ng-controller", _controller);
             }
 
